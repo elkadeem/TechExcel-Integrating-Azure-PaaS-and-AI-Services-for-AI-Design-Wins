@@ -63,7 +63,10 @@ app.MapGet("/", async () =>
 // Retrieve the set of hotels from the database.
 app.MapGet("/Hotels", async () => 
 {
-    throw new NotImplementedException();
+    // Get Hotels from DatabaseService
+    var databaseService = app.Services.GetRequiredService<IDatabaseService>();
+    var hotels = await databaseService.GetHotels();
+    return hotels;
 })
     .WithName("GetHotels")
     .WithOpenApi();
